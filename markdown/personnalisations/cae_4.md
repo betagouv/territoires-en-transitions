@@ -142,6 +142,27 @@ sinon si identite(type, EPCI) et reponse(voirie_1, voirie_1_b) alors 0.5
 Pour les communes, le score de la 4.3.1 est réduit proportionnellement à la part dans l’EPCI compétent en matière de voirie (création, aménagement, entretien) dans la limite de 50 % pour prendre en compte le pouvoir de police du maire.
 Pour les intercommunalités qui n’ont la compétence que sur les voiries et parcs de stationnements communautaires, le score est réduit de 50 %.
 
+# Personnalisation cae 4.3.1.2 liee DOM
+```yaml
+action_id: cae_4.3.1.2
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 3,6/12
+```
+Pour une collectivité hors Métropole, la 4.3.1.2 est notée sur 30 % (au lieu de 20 %).
+
+# Personnalisation cae 4.3.1.4 liee DOM
+```yaml
+action_id: cae_4.3.1.4
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 2,4/12
+```
+Pour une collectivité hors Métropole, la 4.3.1.2 est notée sur 20 % (au lieu de 30 %).
 
 # Réduction potentiel cae 4.3.2 liee competence cyclable
 ```yaml
@@ -156,6 +177,54 @@ sinon si reponse(cyclable, NON) alors 0.5
 ```
 Pour une collectivité disposant de peu de compétences en matière de politique cyclable (ni AOM, ni compétente en matière d’infrastructures vélos, de stationnement vélos, de services associés aux vélos), le score de la 4.3.2 est réduit de 50 %.
 Le nombre de point max pour l'action 4.3.2 est de 16 points en Métropole et de 14 points pour les collectivités DOM.
+
+# Personnalisation cae 4.3.2.2 liee DOM
+```yaml
+action_id: cae_4.3.2.2
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 1,4/14
+```
+Pour une collectivité hors Métropole, la 4.3.2.2 est notée sur 10 % (au lieu de 5 %).
+
+# Personnalisation cae 4.3.2.3 liee DOM
+```yaml
+action_id: cae_4.3.2.3
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 2,8/14
+```
+Pour une collectivité hors Métropole, la 4.3.2.3 est notée sur 20 % (au lieu de 10 %).
+
+# Personnalisation cae 4.3.2.6 liee DOM
+```yaml
+action_id: cae_4.3.2.6
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 0/14
+```
+### Désactivation
+```formule
+identite(localisation, DOM)
+```
+Pour une collectivité hors Métropole, la 4.3.2.6 est désactivée.
+
+# Personnalisation cae 4.3.2.7 liee DOM
+```yaml
+action_id: cae_4.3.2.6
+```
+## Règles
+### Réduction de potentiel
+```formule
+si identite(localisation, DOM) alors 2,8/14
+```
+Pour une collectivité hors Métropole, la 4.3.2.7 est notée sur 20 % (au lieu de 30 %).
 
 
 # Réduction potentiel cae 4.3.3 liee transports en commun
