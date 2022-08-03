@@ -17,12 +17,17 @@ Content-Type: application/json
     client.global.set("auth_token", response.body['access_token']);
 %}
 
-### List owned collectivite
-POST {{api}}/rest/v1/rpc/collectivite_user_list
+
+### Demande les DCPs, ne renvoie que les miennes.
+GET {{api}}/rest/v1/dcp?select=*
 apikey: {{anon}}
 Authorization: Bearer {{auth_token}}
-Content-Type: application/json
 
-{
-  "id": 1
-}
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+    client.test("Ne comporte que mes DCPs", function() {
+        client.assert(response.body.length === 1, "Seule une DCP doit être renvoyée");
+    });
+%}

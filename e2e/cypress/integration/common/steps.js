@@ -48,6 +48,10 @@ Given('les droits utilisateur sont réinitialisés', () => {
   cy.task('supabase_rpc', { name: 'test_reset_droits' });
 });
 
+Given('les informations des membres sont réinitialisées', () => {
+  cy.task('supabase_rpc', { name: 'test_reset_membres' });
+});
+
 Given('je me déconnecte', () => {
   cy.get('[data-test=connectedMenu]').click();
   cy.get('[data-test=logoutBtn]').click();
@@ -150,4 +154,21 @@ Given(/l'appel à "([^"]*)" va répondre "([^"]*)"/, function (name, reply) {
 
 Given('je clique en dehors de la boîte de dialogue', () =>
   cy.get('body').click(10, 10)
+);
+
+Given('je valide le formulaire', () =>
+cy.get('button[type=submit]').click()
+);
+
+const transateTypes = {
+  "succès": "success",
+  "information": "info",
+  "erreur": "error",
+}
+Given(/une alerte de "([^"]*)" est affichée et contient "([^"]*)"/, (type, message) =>
+{
+  cy.get(`.fr-alert--${transateTypes[type]}`).should('be.visible')
+  cy.get(`.fr-alert--${transateTypes[type]}`).should('contain.text', message)
+}
+
 );
